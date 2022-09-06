@@ -73,12 +73,9 @@ const getInfo=async(event)=>{
                 temp_status.innerHTML=
                 "<i class='fas fa-sun' style='color: #eccc68;'></i>";
             }
-
-            // datahide.classList.remove('data_hide');
             
         }catch{
-            city_name.innerText=`Please write the city name properly`;
-            // datahide.classList.add('data_hide');
+            city_name.innerText=`Please write the city name properly `;
         }
         
     }
