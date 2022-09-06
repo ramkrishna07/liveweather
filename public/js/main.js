@@ -32,7 +32,7 @@ const getInfo=async(event)=>{
             console.log(arrData[0].wind.speed);
             const latitude=arrData[0].coord.lat;
             const longitude=arrData[0].coord.lon;
-            city_name.innerText=`${arrData[0].name},${arrData[0].sys.country}`;
+            city_name.innerHTML=`${arrData[0].name},${arrData[0].sys.country}`;
             temp_real_val.innerText=arrData[0].main.temp;
             real_feel.innerText=arrData[0].main.feels_like;
             iscloud.innerText="  "+arrData[0].weather[0].main;
@@ -47,31 +47,26 @@ const getInfo=async(event)=>{
             const response2=await fetch(polution_url);
             const data2=await response2.json();
             const arrData2=[data2];
-            air_quality.innerText=arrData2[0].list[0].main.aqi;
-
-
-            if(arrData[0].weather[0].main==="Rain"){
-                description.innerText="Expect scattered rain showers. The low will be "+arrData[0].main.temp_min;
-            }else if(arrData[0].weather[0].main==="Mist" || arrData[0].weather[0].main==="Haze" || arrData[0].weather[0].main==="Drizzle"){
-                description.innerText="The skies will be clear. The low will be "+arrData[0].main.temp_min;
-            }else if(arrData[0].weather[0].main==="Clouds"){
-                description.innerText="Heavy thunderstorms will roll through your area. The low will be "+arrData[0].main.temp_min;
-            }
+            air_quality.innerHTML=arrData2[0].list[0].main.aqi;
 
             const tempMood=arrData[0].weather[0].main;
             // condition to check sunny or cloudy
             if(tempMood=="Clear"){
                 temp_status.innerHTML=
-                    "<i class='fas fa-sun' style='color: #eccc68;'></i>";
+                "<i class='fas fa-sun' style='color: #eccc68;'></i>";
+                description.innerHTML="The skies will be clear. The low will be "+arrData[0].main.temp_min;
             }else if(tempMood=="Clouds"){
                 temp_status.innerHTML=
                 "<i class='fas fa-cloud' style='color: #f1f2f6;'></i>";
+                description.innerHTML="Heavy thunderstorms will roll through your area. The low will be "+arrData[0].main.temp_min;
             }else if(tempMood=="Rain"){
                 temp_status.innerHTML=
                 "<i class='fas fa-cloud-rain' style='color: #a4b0be;'></i>";
+                description.innerHTML="Expect scattered rain showers. The low will be "+arrData[0].main.temp_min;
             }else{
                 temp_status.innerHTML=
                 "<i class='fas fa-sun' style='color: #eccc68;'></i>";
+                description.innerHTML="The skies will be clear. The low will be "+arrData[0].main.temp_min;
             }
             
         }catch{
