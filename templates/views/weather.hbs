@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   {{>headerlinks}}
+</head>
+<body>
+  {{>navbar}}
+
+    <!-- main header -->
+    <div class="container-fluid main_header background">
+        
+        <div class="row">
+            <div class="col-md-10 col-12 mx-auto">
+               <div class="main_content">
+                   <form class="temp_form">
+                    
+                       <input type="text" id="cityName" placeholder="Enter your city name" autocomplete="off">
+                       <input type="submit" value="search" id="submitBtn">
+                   </form>
+               </div>
+
+    <div class="overall-container">
+        <div class="container-1">
+            <div class="labelWeather"><p id="city_name">Current Weather</p></div>
+            <div class="labelTime"><span id="time"></span> <span id="day"></span></div>
+        </div>
+       
+        <div class="container-2">
+            <div class="container-2-part-1 middle_layer">
+               <p id="temp_status"><i class="fas fa-cloud"></i></p>
+                <a href="#"><p id="temp"><span id="temp_real_val">0</span><sup>0</sup>C</p></a>               
+                <div class="temp-feel">
+                    <div class="weather-cloud">
+                    <div><p>status </p></div>
+                    <div><p><span id="iscloud"></span></p></div>
+                    </div>
+                    <a href="">
+                        <div>Feels like</div>
+                        <div><p><span id="real_feel"></span><sup>0</sup>C</p></div>
+                    </a>
+                </div>
+            </div>
+            <div class="container-2-part-2"><p id="description"></p></div>
+        </div>
+       
+        <div class="container-3">
+          <div class="container-3-pat-1">
+            <div class="weather-extra">
+                <a href="">
+                <div>air quality</div>
+                <div><p id="air_quality">AQI</p></div>
+                </a>
+           </div>
+            <div class="weather-extra">
+                <a href="">
+                <div>wind</div>
+                <div><p id="wind">km/h</p></div>
+                </a>
+           </div>
+            <div class="weather-extra">
+                <a href="">
+                <div>humidity</div>
+                <div><p id="humidity">%</p></div>
+                </a>
+           </div>
+            <div class="weather-extra">
+                <a href="">
+                <div>visibility</div>
+                <div><p id="visibility">km</p></div>
+                </a>
+           </div>
+            <div class="weather-extra">
+                <a href="">
+                <div>pressure</div>
+                <div><p id="pressure">mb</p></div>
+                </a>
+           </div>
+            <div class="weather-extra">
+                <a href="">
+                <div>temp max</div>
+                <div><p><span id="temp_max"></span><sup>0</sup>C</p></div>
+                </a>
+            </div>
+           
+        </div>
+     </div>
+  </div>
+
+</div>
+</div>
+</div>        
+    <!-- footer -->
+   {{>footer}}
+    <script src="js/main.js"></script>
+    <script>
+
+        const time=document.getElementById('time');
+        let h=new Date().getHours();
+        let m=new Date().getMinutes();
+        let am=h >=12 ? "PM" : "AM";
+        // convert 24hr clock to 12 hr clock
+
+         if(h>12){
+            h=h-12;
+         }
+
+         // add zero before single digit number
+
+         h=(h<10) ? "0"+h:h;
+         m=(m<10) ? "0"+m:m;
+         {{!-- s=(s<10) ? "0"+s:s; --}}
+
+        time.innerHTML=h+":"+m+" "+am;
+        
+        const getCurrentDay=()=>{
+            let weekday=new Array(7);
+            weekday[0]="Sunday";
+            weekday[1]="Monday";
+            weekday[2]="Tuesday";
+            weekday[3]="Wednesday";
+            weekday[4]="Thrusday";
+            weekday[5]="Friday";
+            weekday[6]="Saturtday";
+
+            let currentTime=new Date();
+            let days=weekday[currentTime.getDay()];
+            let day=document.getElementById('day');
+            day.innerText=days;
+        }
+
+        getCurrentDay();
+    </script>
+</body>
+</html>
